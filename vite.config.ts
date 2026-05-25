@@ -2,11 +2,12 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   tanstackStart: {
-    deployment: {
-      preset: "vercel",
-    },
-    server: {
-      preset: "vercel",
+    ssr: false,
+    spa: {
+      enabled: true,
+      prerender: {
+        outputPath: "/index",
+      },
     },
   },
   vite: {
