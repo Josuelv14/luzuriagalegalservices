@@ -1,16 +1,9 @@
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { createApp } from "vinxi";
 
-export default defineConfig({
+export default createApp({
   tanstackStart: {
     deployment: {
       preset: "vercel",
-    },
-    ssr: false,
-    spa: {
-      enabled: true,
-      prerender: {
-        outputPath: "/index",
-      },
     },
   },
   vite: {
