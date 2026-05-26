@@ -1,28 +1,30 @@
-import { createApp } from "vinxi";
+import { defineConfig } from "@tanstack/start/config";
+import tsconfigPaths from "vite-tsconfig-paths";
+import { fileURLToPath, URL } from "node:url";
 
-export default createApp({
-  tanstackStart: {
-    deployment: {
-      preset: "vercel",
+export default defineConfig({
+  server: {
+    preset: "vercel",
+  },
+  tsr: {
+    appDirectory: "./src",
+    routesDirectory: "./src/routes",
+    generatedRouteTree: "./src/routeTree.gen.ts",
+  },
+  routers: {
+    client: {
+      entry: "./src/client.tsx",
+    },
+    ssr: {
+      entry: "./src/ssr.tsx",
     },
   },
   vite: {
-    build: {
-      outDir: "dist",
-    },
-    environments: {
-      server: {
-        build: {
-          rollupOptions: {
-            input: {
-              server: './src/start.ts',
-            },
-            output: {
-              entryFileNames: 'server.js',
-            },
-          },
-        },
+    resolve: {
+      alias: {
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
       },
     },
+    plugins: [tsconfigPaths()],
   },
 });
