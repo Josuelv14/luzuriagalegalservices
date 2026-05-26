@@ -1,5 +1,6 @@
 import { defineConfig } from "@tanstack/start/config";
 import tsconfigPaths from "vite-tsconfig-paths";
+import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
@@ -25,6 +26,6 @@ export default defineConfig({
         "@": fileURLToPath(new URL("./src", import.meta.url)),
       },
     },
-    plugins: [tsconfigPaths()],
+    plugins: [tsconfigPaths(), tailwindcss()],
   },
 });
